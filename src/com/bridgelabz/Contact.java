@@ -16,11 +16,11 @@ public class Contact {
 		
 	}
 
-	public Contact(String FirstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email) {
+	public Contact(String FirstName, String lastName, String Address, String city, String state, String zip, String phoneNumber, String email) {
 		super();
 		this.firstName = FirstName;
 		this.lastName = lastName;
-		this.address = address;
+		this.address = Address;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
