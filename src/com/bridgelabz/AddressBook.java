@@ -55,14 +55,15 @@ public class AddressBook {
 		System.out.println("Enter the Firstname of the contact which you want to edit :  ");
 		String name = sc.next();
 		boolean flag1 = false;
-
-		for(int person = 0; person < addressbook.size(); person++) {   			//for all the contacts in the arraylist				
+		
+		//for all the contacts in the array list
+		for(int person = 0; person < addressbook.size(); person++) {   							
 			if(addressbook.get(person).getFirstName().equals(name)) {
 				flag1 = true;
 				System.out.println("Please select any one option(1-8) to change the contact details" + "\n" + "PRESS 1 to edit FirstName" + "\n"
-									+ "PRESS 2 to edit Lastname" + "\n" +"PRESS 3 to edit Address" + "\n" + "PRESS 4 to edit City" + "\n" 
-									+ "PRESS 5 to edit State" + "\n" + "PRESS 6 to edit zip" + "\n" + "PRESS 7 to edit PhoneNumber" + "\n" 
-									+ "PRESS 8 to edit Email");
+						+ "PRESS 2 to edit Lastname" + "\n" +"PRESS 3 to edit Address" + "\n" + "PRESS 4 to edit City" + "\n" 
+						+ "PRESS 5 to edit State" + "\n" + "PRESS 6 to edit zip" + "\n" + "PRESS 7 to edit PhoneNumber" + "\n" 
+						+ "PRESS 8 to edit Email");
 				int choiceEdit = sc.nextInt();
 
 				switch (choiceEdit) {
@@ -110,5 +111,27 @@ public class AddressBook {
 		if (flag1 == false)
 			System.out.println("Sorry!!! There is no such contact present. Please check the firstname and try again.");		
 	}
-	
+
+/* Delete a contact*/
+	void deleteContact() {
+		if(addressbook.size() == 0) {
+			System.out.println("There is no contact present in adressbook. Please add atleast one contact first to delete.");
+			addContactDetails();
+			return;
+		}
+		System.out.println("Enter the firstname of the contact which you want to delete : ");
+		String name = sc.next();
+		boolean flag1 = false;
+		for(int person = 0; person < addressbook.size(); person++) {
+			if(addressbook.get(person).getFirstName().equals(name)) {
+				flag1 = true;
+				addressbook.remove(person);
+				System.out.println("Contact deleted.");
+				return;
+			}
+		}
+		if (flag1 == false)
+			System.out.println("Sorry!!! There is no such contact present. Please check the firstname and try again.");	
+	}
+
 }
