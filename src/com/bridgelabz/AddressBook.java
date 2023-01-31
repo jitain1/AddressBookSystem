@@ -45,7 +45,7 @@ public class AddressBook {
 	/* edit the contact */
 	void editContactDetails() {
 		if(allContacts.size() == 0) {
-			System.out.println("There is no contact present in adressbook. Please add atleast one contact first to edit.");
+			System.out.println("There is no contact present in current adressbook. Please add atleast one contact first to edit.");
 			addContactDetails();
 			return;
 		}
@@ -130,8 +130,21 @@ public class AddressBook {
 			System.out.println("Sorry!!! There is no such contact present. Please check the firstname and try again.");	
 	}
 
+
 	@Override
 	public String toString() {
-		return "All contacts:-\n[" + allContacts +"]";
+		return "All contacts:-\n[" + allContacts + "]";
+	}
+
+	public void showContact() {
+		System.out.println("Enter the firstname of the contact to see the details : ");
+		String name = sc.next();
+		for(int i = 0; i < allContacts.size(); i++) {
+			if(allContacts.get(i).getFirstName().equals(name)) {
+				System.out.println(allContacts.get(i));
+				return;
+			}
+		}
+		System.out.println("Contact NOT FOUND!!! Check the First name and try again.");
 	}
 }
