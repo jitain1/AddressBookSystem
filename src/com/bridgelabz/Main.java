@@ -1,9 +1,7 @@
 package com.bridgelabz;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -72,6 +70,7 @@ public class Main {
 				+ "Total contacts present in " + state + " :- " + contacts.size()));
 
 	}
+
 	private static void sortByCity() {
 		allAddressbook.forEach((name, adBook) -> adBook.allContacts.stream().forEach(contact -> {
 			if (cityMap.containsKey(contact.getCity())) {
@@ -82,9 +81,8 @@ public class Main {
 				cityMap.put(contact.getCity(), city);
 			}
 		}));
-		cityMap.forEach((city,contacts) ->
-			System.out.println(city + " :- " + "\n" + contacts + "\n" + "Total contacts present in " + city + " :- " + contacts.size())
-				);
+		cityMap.forEach((city, contacts) -> System.out.println(city + " :- " + "\n" + contacts + "\n"
+				+ "Total contacts present in " + city + " :- " + contacts.size()));
 
 	}
 
@@ -103,6 +101,7 @@ public class Main {
 				System.out.println("3.Delete contact" + "      " + "4. Show details of a particular contact");
 				System.out.println("5. Show all contacts of '" + adressBookName + "'");
 				System.out.println("6. Display by city" + "     " + "7. Display by state");
+				System.out.println("8. Display all the contacts sorted by FirstName ");
 				System.out.println("0. Exit");
 
 				int choice = sc.nextInt();
@@ -134,11 +133,8 @@ public class Main {
 				case 6:
 					System.out.println("Enter the name of the city to see all the contacts of that city : ");
 					String cityName = sc.next();
-					List<Contact> listForCity = allAddressbook.get(adressBookName).allContacts.stream().distinct()
-							.collect(Collectors.toList());
-
-					System.out.println(listForCity);
-
+					System.out.println(allAddressbook.get(adressBookName).allContacts.stream()
+							.filter(t -> t.getState().equals(cityName)).collect(Collectors.toList()));
 					break;
 				case 7:
 					System.out.println("Enter the name of the State to see all the contacts of that city : ");
@@ -146,6 +142,9 @@ public class Main {
 					System.out.println("All the contacts presents in the State " + stateName + " : \n");
 					System.out.println(allAddressbook.get(adressBookName).allContacts.stream()
 							.filter(t -> t.getState().equals(stateName)).collect(Collectors.toList()));
+					break;
+				case 8:
+					allAddressbook.get(adressBookName).showContactSortedAlphabetically();
 					break;
 				case 0:
 					flag = false;
