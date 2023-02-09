@@ -1,6 +1,11 @@
 package com.bridgelabz;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -8,8 +13,8 @@ public class Main {
 
 	static Map<String, AddressBook> allAddressbook = new HashMap<>();
 
-	private static Map< String, ArrayList<Contact> > cityMap = new HashMap<>();
-	private static Map< String, ArrayList<Contact> > stateMap = new HashMap<>();
+	private static Map<String, ArrayList<Contact>> cityMap = new HashMap<>();
+	private static Map<String, ArrayList<Contact>> stateMap = new HashMap<>();
 
 	public static void main(String[] args) {
 		boolean flag = true;
@@ -54,34 +59,34 @@ public class Main {
 	}
 
 	private static void sortByState() {
-		allAddressbook.forEach( (name, adBook) -> 
-		adBook.allContacts.stream().forEach(contact ->{
-			if(stateMap.containsKey(contact.getCity())) {
+		allAddressbook.forEach((name, adBook) -> adBook.allContacts.stream().forEach(contact -> {
+			if (stateMap.containsKey(contact.getCity())) {
 				stateMap.get(contact.getCity()).add(contact);
 			} else {
-                ArrayList<Contact> state = new ArrayList<>();
-                state.add(contact);
-                stateMap.put(contact.getCity(), state);
-            }
-		})
+				ArrayList<Contact> state = new ArrayList<>();
+				state.add(contact);
+				stateMap.put(contact.getCity(), state);
+			}
+		}));
+		stateMap.forEach((state,contacts) ->
+		System.out.println(state + " :- " + "\n" + contacts + "\n" + "Total contacts present in " + state + " :- " + contacts.size())
 			);
-	System.out.println(stateMap);
-		
+
 	}
 
 	private static void sortByCity() {
-		allAddressbook.forEach( (name, adBook) -> 
-			adBook.allContacts.stream().forEach(contact ->{
-				if(cityMap.containsKey(contact.getCity())) {
-					 cityMap.get(contact.getCity()).add(contact);
-				} else {
-                    ArrayList<Contact> city = new ArrayList<>();
-                    city.add(contact);
-                    cityMap.put(contact.getCity(), city);
-                }
-			})
+		allAddressbook.forEach((name, adBook) -> adBook.allContacts.stream().forEach(contact -> {
+			if (cityMap.containsKey(contact.getCity())) {
+				cityMap.get(contact.getCity()).add(contact);
+			} else {
+				ArrayList<Contact> city = new ArrayList<>();
+				city.add(contact);
+				cityMap.put(contact.getCity(), city);
+			}
+		}));
+		cityMap.forEach((city,contacts) ->
+			System.out.println(city + " :- " + "\n" + contacts + "\n" + "Total contacts present in " + city + " :- " + contacts.size())
 				);
-		System.out.println(cityMap);
 
 	}
 
@@ -135,7 +140,7 @@ public class Main {
 							.collect(Collectors.toList());
 
 					System.out.println(listForCity);
-					
+
 					break;
 				case 7:
 					System.out.println("Enter the name of the State to see all the contacts of that city : ");
