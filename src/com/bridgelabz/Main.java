@@ -60,20 +60,18 @@ public class Main {
 
 	private static void sortByState() {
 		allAddressbook.forEach((name, adBook) -> adBook.allContacts.stream().forEach(contact -> {
-			if (stateMap.containsKey(contact.getCity())) {
-				stateMap.get(contact.getCity()).add(contact);
+			if (stateMap.containsKey(contact.getState())) {
+				stateMap.get(contact.getState()).add(contact);
 			} else {
 				ArrayList<Contact> state = new ArrayList<>();
 				state.add(contact);
-				stateMap.put(contact.getCity(), state);
+				stateMap.put(contact.getState(), state);
 			}
 		}));
-		stateMap.forEach((state,contacts) ->
-		System.out.println(state + " :- " + "\n" + contacts + "\n" + "Total contacts present in " + state + " :- " + contacts.size())
-			);
+		stateMap.forEach((state, contacts) -> System.out.println(state + " :- " + "\n" + contacts + "\n"
+				+ "Total contacts present in " + state + " :- " + contacts.size()));
 
 	}
-
 	private static void sortByCity() {
 		allAddressbook.forEach((name, adBook) -> adBook.allContacts.stream().forEach(contact -> {
 			if (cityMap.containsKey(contact.getCity())) {
