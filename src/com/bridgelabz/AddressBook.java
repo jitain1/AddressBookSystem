@@ -167,6 +167,11 @@ public class AddressBook {
 		System.out.println("Contact NOT FOUND!!! Check the First name and try again.");
 
 	}
+	
+	public void showContactSortedAlphabetically() {
+		allContacts.stream().sorted((contact1, contact2) -> contact1.getFirstName().compareToIgnoreCase(contact2.getFirstName()))
+				.forEach(contact -> System.out.println(contact));
+	}
 
 	@Override
 	public String toString() {
