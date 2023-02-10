@@ -122,6 +122,8 @@ public class Main {
 				System.out.println("5. Show all contacts of '" + adressBookName + "'");
 				System.out.println("6. Display by city" + "     " + "7. Display by state");
 				System.out.println("8. Display all the contacts sorted by FirstName ");
+				System.out.println("9. Stored all contact in text file");
+				System.out.println("10. show contact from text file");
 				System.out.println("0. Exit");
 
 				int choice = sc.nextInt();
@@ -166,6 +168,13 @@ public class Main {
 				case 8:
 					allAddressbook.get(adressBookName).showContactSortedAlphabetically();
 					break;
+					
+				 case 9:
+					 FileHandler.writeIntoFile(adressBookName, allAddressbook.get(adressBookName));
+                     break;
+				 case 10:
+					 FileHandler.readFromFile();
+                     break;
 				case 0:
 					flag = false;
 					System.out.println("Successfully exited from " + adressBookName);
