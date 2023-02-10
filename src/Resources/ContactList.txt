@@ -1,0 +1,2 @@
+Contact [firstName=jj, lastName=j, address=j, city=j, state=j, zip=j, phoneNumber=j, email=j]
+Contact [firstName=f, lastName=f, address=f, city=f, state=f, zip=f, phoneNumber=f, email=f]
